@@ -1,590 +1,873 @@
-/* ===================================
-   FRANK DEVSECOPS PORTFOLIO
-=================================== */
+/* =========================================================
+   FRANK LARTEY TERKPER
+   DEVSECOPS PORTFOLIO
+   CYBER THEME — SPRINT 2
+========================================================= */
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+
+/* =========================================================
+   GOOGLE FONTS
+========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+
+
+/* =========================================================
+   ROOT VARIABLES
+========================================================= */
+
+:root {
+    --background: #050914;
+    --background-secondary: #080f1d;
+
+    --card: rgba(10, 20, 35, 0.85);
+
+    --cyan: #00d9ff;
+    --green: #00ff9c;
+
+    --text: #f8fafc;
+    --muted: #94a3b8;
+
+    --border: rgba(0, 217, 255, 0.25);
+
+    --cyan-glow:
+        0 0 10px rgba(0, 217, 255, 0.35),
+        0 0 30px rgba(0, 217, 255, 0.10);
+
+    --green-glow:
+        0 0 10px rgba(0, 255, 156, 0.35),
+        0 0 30px rgba(0, 255, 156, 0.10);
 }
 
-html{
-    scroll-behavior:smooth;
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body{
-
-    font-family:'Rajdhani',sans-serif;
-
-    background:#f5f7fb;
-
-    color:#333;
-
-    line-height:1.7;
-
+html {
+    scroll-behavior: smooth;
 }
 
-/* ==============================
-NAVIGATION
-============================== */
+body {
+    font-family: 'Rajdhani', sans-serif;
 
-nav{
+    background: var(--background);
 
-    position:sticky;
+    color: var(--text);
 
-    top:0;
+    line-height: 1.6;
 
-    background:#0f172a;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    padding:18px 8%;
-
-    z-index:999;
-
-    box-shadow:0 2px 15px rgba(0,0,0,.15);
-
+    overflow-x: hidden;
 }
 
-.logo{
 
-    font-size:28px;
+/* =========================================================
+   CYBER GRID BACKGROUND
+========================================================= */
 
-    font-weight:bold;
+body::before {
+    content: "";
 
-    font-family:'Orbitron',sans-serif;
+    position: fixed;
 
-    color:white;
+    inset: 0;
 
+    background-image:
+        linear-gradient(
+            rgba(0, 217, 255, 0.04) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(0, 217, 255, 0.04) 1px,
+            transparent 1px
+        );
+
+    background-size: 50px 50px;
+
+    pointer-events: none;
+
+    z-index: -2;
+
+    animation: gridMove 20s linear infinite;
 }
 
-.logo span{
 
-    color:#38bdf8;
+/* =========================================================
+   AMBIENT CYBER GLOW
+========================================================= */
 
+body::after {
+    content: "";
+
+    position: fixed;
+
+    width: 600px;
+    height: 600px;
+
+    top: -250px;
+    right: -200px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(0, 217, 255, 0.10),
+            transparent 70%
+        );
+
+    pointer-events: none;
+
+    z-index: -1;
 }
 
-nav ul{
 
-    display:flex;
+/* =========================================================
+   NAVIGATION
+========================================================= */
 
-    list-style:none;
+nav {
+    position: sticky;
 
-    gap:30px;
+    top: 0;
 
+    z-index: 1000;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    padding: 18px 6%;
+
+    background: rgba(5, 9, 20, 0.88);
+
+    backdrop-filter: blur(12px);
+
+    border-bottom: 1px solid var(--border);
 }
 
-nav ul li a{
 
-    color:white;
+/* LOGO */
 
-    text-decoration:none;
-
-    transition:.3s;
-
-    font-weight:600;
-
-}
-
-nav ul li a:hover{
-
-    color:#38bdf8;
-
-}
-
-/* ==============================
-HERO
-============================== */
-
-header{
-
-    max-width:1100px;
-
-    margin:auto;
-
-    padding:70px 20px;
-
-    text-align:center;
-
-}
-
-.profile-pic{
-
-    width:180px;
-
-    height:180px;
-
-    border-radius:50%;
-
-    object-fit:cover;
-
-    border:6px solid #38bdf8;
-
-    box-shadow:0 10px 30px rgba(0,0,0,.25);
-
-    margin-bottom:25px;
-
-}
-
-header h1{
-
-    font-size:42px;
-
-    color:#0f172a;
-
-    margin-bottom:10px;
-
-    font-family:'Orbitron',sans-serif;
-
-}
-
-header h2{
-
-    color:#2563eb;
-
-    margin-bottom:20px;
-
-}
-
-.tech-line{
-
-    color:#555;
-
-    font-weight:600;
-
-    margin-bottom:25px;
-
-    letter-spacing:1px;
-
-}
-
-.contact{
-
-    display:flex;
-
-    flex-wrap:wrap;
-
-    justify-content:center;
-
-    gap:15px;
-
-    margin-bottom:25px;
-
-}
-
-.contact p{
-
-    background:white;
-
-    padding:10px 18px;
-
-    border-radius:40px;
-
-    box-shadow:0 2px 8px rgba(0,0,0,.08);
-
-}
-
-.badge{
-
-    display:inline-block;
-
-    background:#2563eb;
-
-    color:white;
-
-    padding:10px 25px;
-
-    border-radius:40px;
-
-    font-weight:bold;
-
-    margin-bottom:25px;
-
-}
-
-/* ==============================
-BUTTONS
-============================== */
-
-.buttons{
-
-    margin-bottom:40px;
-
-}
-
-.btn{
-
-    display:inline-block;
-
-    padding:12px 28px;
-
-    background:#2563eb;
-
-    color:white;
-
-    text-decoration:none;
-
-    border-radius:8px;
-
-    margin:10px;
-
-    transition:.3s;
-
-    font-weight:bold;
-
-}
-
-.btn:hover{
-
-    background:#1d4ed8;
-
-    transform:translateY(-3px);
-
-}
-
-/* ==============================
-MISSION
-============================== */
-
-.mission{
-
-    background:white;
-
-    margin-top:40px;
-
-    padding:35px;
-
-    border-radius:15px;
-
-    box-shadow:0 5px 20px rgba(0,0,0,.08);
-
-}
-
-.mission h3{
-
-    color:#2563eb;
-
-    margin-bottom:15px;
-
-}
-
-/* ==============================
-SECTIONS
-============================== */
-
-section{
-
-    max-width:1100px;
-
-    margin:auto;
-
-    padding:60px 20px;
-
-}
-
-section h2{
-
-    text-align:center;
-
-    color:#0f172a;
-
-    margin-bottom:40px;
-
-    font-size:34px;
-
-    font-family:'Orbitron',sans-serif;
-
-}
-
-/* ==============================
-CARDS
-============================== */
-
-.card-container{
-
-    display:grid;
-
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-
-    gap:25px;
-
-}
-
-.card{
-
-    background:white;
-
-    padding:25px;
-
-    border-radius:15px;
-
-    box-shadow:0 5px 20px rgba(0,0,0,.08);
-
-    transition:.3s;
-
-}
-
-.card:hover{
-
-    transform:translateY(-6px);
-
-}
-
-.card h3{
-
-    color:#2563eb;
-
-    margin-bottom:15px;
-
-}
-
-.card p{
-
-    margin-bottom:8px;
-
-}
-
-/* ==============================
-EXPERIENCE
-============================== */
-
-.experience-card{
-
-    background:white;
-
-    padding:30px;
-
-    margin-bottom:30px;
-
-    border-radius:15px;
-
-    box-shadow:0 5px 20px rgba(0,0,0,.08);
-
-}
-
-.experience-card h3{
-
-    color:#0f172a;
-
-}
-
-.experience-card h4{
-
-    color:#2563eb;
-
-    margin-bottom:10px;
-
-}
-
-.date{
-
-    display:inline-block;
-
-    margin-bottom:20px;
-
-    color:#666;
-
-    font-weight:bold;
-
-}
-
-.experience-card ul{
-
-    padding-left:22px;
-
-}
-
-.experience-card li{
-
-    margin-bottom:12px;
-
-}
-
-/* ===================================
-   CREDENTIALS
-=================================== */
-
-#credentials {
-    max-width: 1100px;
-    margin: auto;
-    padding: 60px 20px;
-}
-
-#credentials h2 {
-    text-align: center;
-    font-size: 34px;
-    margin-bottom: 45px;
-    color: #0f172a;
+.logo {
     font-family: 'Orbitron', sans-serif;
+
+    font-size: 22px;
+
+    font-weight: 700;
+
+    color: var(--cyan);
+
+    letter-spacing: 2px;
+
+    text-shadow:
+        0 0 8px rgba(0, 217, 255, 0.7);
 }
 
-#credentials .card-container {
+.logo span {
+    color: var(--green);
+
+    text-shadow:
+        0 0 8px rgba(0, 255, 156, 0.7);
+}
+
+
+/* NAV LINKS */
+
+nav ul {
+    display: flex;
+
+    align-items: center;
+
+    gap: 28px;
+
+    list-style: none;
+}
+
+nav a {
+    color: var(--muted);
+
+    text-decoration: none;
+
+    font-family: 'Orbitron', sans-serif;
+
+    font-size: 12px;
+
+    transition: 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--cyan);
+
+    text-shadow:
+        0 0 8px rgba(0, 217, 255, 0.8);
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+header {
+    min-height: 90vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 100px 20px 80px;
+}
+
+
+/* PROFILE IMAGE */
+
+.profile-pic {
+    width: 175px;
+
+    height: 175px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 3px solid var(--cyan);
+
+    padding: 5px;
+
+    background: var(--background);
+
+    box-shadow:
+        0 0 15px rgba(0, 217, 255, 0.6),
+        0 0 40px rgba(0, 217, 255, 0.15);
+
+    margin-bottom: 30px;
+
+    transition: 0.4s ease;
+}
+
+.profile-pic:hover {
+    transform: scale(1.04);
+
+    box-shadow:
+        0 0 20px rgba(0, 217, 255, 0.8),
+        0 0 50px rgba(0, 217, 255, 0.25);
+}
+
+
+/* NAME */
+
+header h1 {
+    font-family: 'Orbitron', sans-serif;
+
+    font-size: clamp(38px, 6vw, 75px);
+
+    font-weight: 800;
+
+    letter-spacing: 3px;
+
+    color: #ffffff;
+
+    margin-bottom: 10px;
+
+    text-shadow:
+        0 0 10px rgba(0, 217, 255, 0.5),
+        0 0 30px rgba(0, 217, 255, 0.20);
+}
+
+
+/* JOB TITLE */
+
+header h2 {
+    font-family: 'Orbitron', sans-serif;
+
+    font-size: clamp(20px, 3vw, 30px);
+
+    color: var(--green);
+
+    margin-bottom: 12px;
+
+    text-shadow:
+        0 0 10px rgba(0, 255, 156, 0.6);
+}
+
+
+/* TECH LINE */
+
+.tech-line {
+    color: var(--cyan);
+
+    font-size: 18px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================================================
+   CONTACT
+========================================================= */
+
+.contact {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    max-width: 900px;
+
+    margin-bottom: 20px;
+}
+
+.contact p {
+    padding: 7px 14px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 30px;
+
+    background: rgba(10, 20, 35, 0.65);
+
+    color: var(--muted);
+
+    font-size: 14px;
+
+    transition: 0.3s ease;
+}
+
+.contact p:hover {
+    color: var(--cyan);
+
+    border-color: var(--cyan);
+
+    box-shadow: var(--cyan-glow);
+}
+
+
+/* =========================================================
+   BADGE
+========================================================= */
+
+.badge {
+    padding: 8px 18px;
+
+    margin: 10px 0 20px;
+
+    border: 1px solid var(--green);
+
+    border-radius: 30px;
+
+    color: var(--green);
+
+    font-family: 'Orbitron', sans-serif;
+
+    font-size: 12px;
+
+    letter-spacing: 1px;
+
+    box-shadow:
+        0 0 10px rgba(0, 255, 156, 0.15);
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.buttons {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-bottom: 45px;
+}
+
+.btn {
+    display: inline-block;
+
+    padding: 12px 25px;
+
+    border: 1px solid var(--cyan);
+
+    border-radius: 6px;
+
+    color: var(--cyan);
+
+    background: transparent;
+
+    text-decoration: none;
+
+    font-family: 'Orbitron', sans-serif;
+
+    font-size: 12px;
+
+    transition: 0.3s ease;
+}
+
+.btn:hover {
+    background: var(--cyan);
+
+    color: #020617;
+
+    box-shadow:
+        0 0 10px var(--cyan),
+        0 0 30px rgba(0, 217, 255, 0.35);
+
+    transform: translateY(-3px);
+}
+
+
+/* =========================================================
+   MISSION
+========================================================= */
+
+.mission {
+    max-width: 800px;
+
+    padding: 30px;
+
+    text-align: left;
+
+    background: var(--card);
+
+    border-left: 3px solid var(--green);
+
+    border-top: 1px solid rgba(0, 255, 156, 0.12);
+
+    border-right: 1px solid rgba(0, 255, 156, 0.12);
+
+    border-bottom: 1px solid rgba(0, 255, 156, 0.12);
+
+    box-shadow:
+        0 0 25px rgba(0, 255, 156, 0.05);
+}
+
+.mission h3 {
+    color: var(--green);
+
+    font-family: 'Orbitron', sans-serif;
+
+    margin-bottom: 12px;
+}
+
+.mission p {
+    color: var(--muted);
+
+    font-size: 17px;
+}
+
+
+/* =========================================================
+   SECTIONS
+========================================================= */
+
+section {
+    max-width: 1100px;
+
+    margin: auto;
+
+    padding: 90px 20px;
+}
+
+section h2 {
+    text-align: center;
+
+    font-family: 'Orbitron', sans-serif;
+
+    font-size: 30px;
+
+    color: var(--cyan);
+
+    text-transform: uppercase;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 45px;
+
+    text-shadow:
+        0 0 10px rgba(0, 217, 255, 0.45);
+}
+
+
+/* =========================================================
+   CARDS
+========================================================= */
+
+.card-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(240px, 1fr));
+
     gap: 25px;
 }
 
-#credentials .card {
-    background: #ffffff;
-    border-radius: 16px;
-    padding: 35px 25px;
-    text-align: center;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-    transition: all 0.3s ease;
+.card {
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    padding: 30px;
+
+    backdrop-filter: blur(10px);
+
+    box-shadow: var(--cyan-glow);
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
-#credentials .card:hover {
+.card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+
+    border-color: var(--cyan);
+
+    box-shadow:
+        0 0 15px rgba(0, 217, 255, 0.35),
+        0 0 40px rgba(0, 217, 255, 0.10);
+}
+
+.card h3 {
+    color: var(--green);
+
+    font-family: 'Orbitron', sans-serif;
+
+    font-size: 18px;
+
+    margin-bottom: 15px;
+
+    text-shadow:
+        0 0 8px rgba(0, 255, 156, 0.4);
+}
+
+.card h4 {
+    color: var(--cyan);
+
+    font-family: 'Orbitron', sans-serif;
+
+    font-size: 16px;
+
+    margin-bottom: 10px;
+}
+
+.card p {
+    color: var(--muted);
+
+    font-size: 16px;
+}
+
+
+/* =========================================================
+   EXPERIENCE
+========================================================= */
+
+.experience-card {
+    position: relative;
+
+    margin-bottom: 30px;
+
+    padding: 30px;
+
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    border-radius: 10px;
+
+    box-shadow: var(--cyan-glow);
+
+    transition: 0.3s ease;
+}
+
+.experience-card:hover {
+    transform: translateX(5px);
+
+    border-color: var(--green);
+
+    box-shadow: var(--green-glow);
+}
+
+.experience-card h3 {
+    color: var(--green);
+
+    font-family: 'Orbitron', sans-serif;
+
+    font-size: 21px;
+}
+
+.experience-card h4 {
+    color: var(--cyan);
+
+    font-size: 18px;
+
+    margin: 5px 0;
+}
+
+.date {
+    display: inline-block;
+
+    margin-bottom: 18px;
+
+    color: var(--green);
+
+    font-size: 14px;
+}
+
+.experience-card ul {
+    padding-left: 20px;
+}
+
+.experience-card li {
+    color: var(--muted);
+
+    margin-bottom: 10px;
+}
+
+
+/* =========================================================
+   CREDENTIALS
+========================================================= */
+
+#credentials .card {
+    min-height: 250px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
 }
 
 #credentials .card h3 {
     font-size: 42px;
-    margin-bottom: 20px;
-}
 
-#credentials .card h4 {
-    color: #2563eb;
-    font-size: 20px;
-    margin-bottom: 12px;
-    font-weight: 700;
-}
-
-#credentials .card p {
-    color: #555;
-    margin-bottom: 8px;
-    font-size: 16px;
+    margin-bottom: 15px;
 }
 
 .credential-date {
     display: inline-block;
-    margin-top: 18px;
-    color: #2563eb;
-    font-weight: bold;
-    font-size: 15px;
+
+    margin-top: 15px;
+
+    padding: 5px 12px;
+
+    border: 1px solid var(--green);
+
+    border-radius: 20px;
+
+    color: var(--green);
+
+    font-size: 13px;
 }
 
-/* ===================================
+
+/* =========================================================
    CORE TRAITS
-=================================== */
+========================================================= */
 
-/* ==============================
-TRAITS
-============================== */
+.traits {
+    display: flex;
 
-.traits{
+    flex-wrap: wrap;
 
-    display:flex;
+    justify-content: center;
 
-    justify-content:center;
+    gap: 15px;
+}
 
-    flex-wrap:wrap;
+.traits span {
+    padding: 12px 22px;
 
-    gap:20px;
+    border: 1px solid var(--green);
+
+    border-radius: 30px;
+
+    background: rgba(0, 255, 156, 0.03);
+
+    color: var(--green);
+
+    font-weight: 600;
+
+    box-shadow:
+        0 0 8px rgba(0, 255, 156, 0.05);
+
+    transition: 0.3s ease;
+}
+
+.traits span:hover {
+    background: var(--green);
+
+    color: #020617;
+
+    box-shadow:
+        0 0 10px var(--green),
+        0 0 30px rgba(0, 255, 156, 0.30);
+
+    transform: translateY(-4px);
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+footer {
+    padding: 40px 20px;
+
+    text-align: center;
+
+    border-top: 1px solid var(--border);
+
+    background: rgba(5, 9, 20, 0.90);
+
+    color: var(--muted);
+}
+
+footer p {
+    margin-bottom: 5px;
+}
+
+
+/* =========================================================
+   GRID ANIMATION
+========================================================= */
+
+@keyframes gridMove {
+
+    0% {
+        background-position: 0 0;
+    }
+
+    100% {
+        background-position: 50px 50px;
+    }
 
 }
 
-.traits span{
 
-    background:white;
+/* =========================================================
+   RESPONSIVE DESIGN
+========================================================= */
 
-    padding:14px 24px;
+@media (max-width: 768px) {
 
-    border-radius:40px;
+    nav {
+        flex-direction: column;
 
-    box-shadow:0 5px 20px rgba(0,0,0,.08);
+        gap: 15px;
 
-    font-weight:600;
+        padding: 15px;
+    }
 
-}
+    nav ul {
+        flex-wrap: wrap;
 
+        justify-content: center;
 
-/* ==============================
-FOOTER
-============================== */
+        gap: 15px;
+    }
 
-footer{
+    nav a {
+        font-size: 10px;
+    }
 
-    background:#0f172a;
+    header {
+        padding-top: 70px;
+    }
 
-    color:white;
+    header h1 {
+        font-size: 38px;
+    }
 
-    text-align:center;
+    .profile-pic {
+        width: 145px;
 
-    padding:40px 20px;
+        height: 145px;
+    }
 
-    margin-top:60px;
+    .contact {
+        flex-direction: column;
 
-}
+        align-items: center;
+    }
 
-footer p{
+    section {
+        padding: 65px 18px;
+    }
 
-    margin:8px;
+    section h2 {
+        font-size: 24px;
+    }
 
-}
+    .card-container {
+        grid-template-columns: 1fr;
+    }
 
-/* ==============================
-RESPONSIVE
-============================== */
+    .experience-card {
+        padding: 22px;
+    }
 
-@media(max-width:900px){
-
-nav{
-
-flex-direction:column;
-
-}
-
-nav ul{
-
-margin-top:20px;
-
-flex-wrap:wrap;
-
-justify-content:center;
-
-}
-
-header h1{
-
-font-size:32px;
-
-}
-
-.contact{
-
-flex-direction:column;
-
-align-items:center;
+    .mission {
+        padding: 22px;
+    }
 
 }
 
-}
 
-@media(max-width:600px){
+/* =========================================================
+   SMALL PHONES
+========================================================= */
 
-.profile-pic{
+@media (max-width: 480px) {
 
-width:220px;
+    header h1 {
+        font-size: 30px;
 
-height:220px;
+        letter-spacing: 1px;
+    }
 
-}
+    header h2 {
+        font-size: 20px;
+    }
 
-section h2{
+    .tech-line {
+        font-size: 14px;
+    }
 
-font-size:28px;
+    .btn {
+        width: 100%;
 
-}
+        max-width: 250px;
 
-.card-container{
-
-grid-template-columns:1fr;
-
-}
+        text-align: center;
+    }
 
 }
