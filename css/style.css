@@ -1289,6 +1289,14 @@ body > *:not(.cyber-background) {
     z-index: 1;
 }
 
+.cyber-background {
+    z-index: 2;
+}
+
+.scan-line {
+    z-index: 9999;
+}
+
 
 /* =========================================================
    FLOATING PARTICLES
@@ -1503,4 +1511,34 @@ body > *:not(.cyber-background) {
         transform: translateY(100vh);
         opacity: 0;
     }
+}
+
+/* =========================================================
+   SCAN LINE VISIBILITY FIX
+========================================================= */
+
+.cyber-background {
+    z-index: 999;
+}
+
+.scan-line {
+    position: absolute;
+    top: -5px;
+    left: 0;
+
+    width: 100%;
+    height: 3px;
+
+    background: #00d9ff;
+
+    box-shadow:
+        0 0 5px #00d9ff,
+        0 0 15px #00d9ff,
+        0 0 30px #00d9ff;
+
+    opacity: 0.9;
+
+    animation: scanDown 5s linear infinite;
+
+    pointer-events: none;
 }
